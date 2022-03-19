@@ -2,9 +2,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WashIt.API.Models
 {
-    public class User : BaseEntity
+    public class BaseEntity
     {
+        [Key]
         [Required]
-        public string Username { get; set; }
+        public int Id { get; set; }
     }
 }

@@ -1,10 +1,14 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace WashIt.API.Models
 {
-    public class WashingMode
+    public class WashingMode : BaseEntity
     {
-        public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public int DurationMinutes { get; set; }
+        [Required]
         public string Temperature { get; set; }
 
     }
