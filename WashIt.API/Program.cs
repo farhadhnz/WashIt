@@ -30,4 +30,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+DbPrep.PreparePopulation(app);
+
 app.Run();
