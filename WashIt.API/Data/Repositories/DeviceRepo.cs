@@ -8,7 +8,7 @@ namespace WashIt.API.Data.Repositories
         private readonly AppDbContext _context;
         public DeviceRepo(AppDbContext context) : base(context)
         {
-
+            _context = context;
         }
 
         public async void CreateDeviceAsync(Device device)

@@ -1,13 +1,20 @@
 using Microsoft.EntityFrameworkCore;
 using WashIt.API.Data;
 using WashIt.API.Data.Repositories;
+using WashIt.API.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMemory"));
 
+builder.Services.AddScoped<IBaseRepo, BaseRepo>();
 builder.Services.AddScoped<IDeviceRepo, DeviceRepo>();
+
+builder.Services.AddScoped<IBaseService, BaseService>();
+builder.Services.AddScoped<IDeviceService, DeviceService>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 builder.Services.AddControllers();
