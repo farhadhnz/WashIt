@@ -19,10 +19,12 @@ namespace WashIt.API.Controllers
             this.mapper = mapper;
         }
 
+        [Route("date/{date}/duration/{duration}")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BookingAvailableDuration>>> GetAvailableBookingDurations(DateOnly date, int duration)
+        public async Task<ActionResult<IEnumerable<BookingAvailableDuration>>> GetAvailableBookingDurations(string date, int duration)
         {
-            var bookingDurations = await bookingService.GetAvailableBookingDurations(date, duration);
+            var dateConverted = DateTime.Parse(date);
+            var bookingDurations = await bookingService.GetAvailableBookingDurations(dateConverted, duration);
 
             return Ok(bookingDurations);
         }

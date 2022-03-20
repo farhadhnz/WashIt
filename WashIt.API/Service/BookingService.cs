@@ -65,7 +65,7 @@ namespace WashIt.API.Service
             bookingRepo.CreateBooking(bookingItem);
         }
 
-        public async Task<IEnumerable<BookingAvailableDuration>> GetAvailableBookingDurations(DateOnly date, int duration)
+        public async Task<IEnumerable<BookingAvailableDuration>> GetAvailableBookingDurations(DateTime date, int duration)
         {
             // Get All bookings of the date
             var allBookings = await bookingRepo.GetAllBookingsAsync(date);
@@ -91,7 +91,7 @@ namespace WashIt.API.Service
                                    })
                                    .OrderBy(x => x.StartTime);
 
-                var endTime = TimeOnly.Parse("00:00");
+                var endTime = DateTime.Parse("00:00");
 
                 foreach (var item in busyDurations)
                 {

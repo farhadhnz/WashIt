@@ -21,7 +21,7 @@ namespace WashIt.API.Data.Repositories
             await SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<WaitingListItem>> GetWaitingListItems(DateOnly date)
+        public async Task<IEnumerable<WaitingListItem>> GetWaitingListItems(DateTime date)
         {
             var items = await _context.WaitingListItems
                             .Where(x => x.Date.Equals(date) && !x.Notified)

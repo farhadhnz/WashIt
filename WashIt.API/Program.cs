@@ -13,6 +13,7 @@ builder.Services.AddScoped<IDeviceRepo, DeviceRepo>();
 builder.Services.AddScoped<IBookingRepo, BookingRepo>();
 builder.Services.AddScoped<IWaitListRepo, WaitListRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
+builder.Services.AddScoped<IWashingModeRepo, WashingModeRepo>();
 
 builder.Services.AddScoped<IBaseService, BaseService>();
 builder.Services.AddScoped<IDeviceService, DeviceService>();

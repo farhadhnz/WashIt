@@ -11,11 +11,11 @@ namespace WashIt.API.Models
         [Required]
         public int WashingModeId { get; set; }
         [Required]
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         [Required]
-        public TimeOnly StartTime { get; set; }
+        public DateTime StartTime { get; set; }
         [Required]
-        public TimeOnly EndTime { get; set; }
+        public DateTime EndTime { get; set; }
         [Required]
         public bool Cancelled { get; set; }
         [Required]

@@ -30,7 +30,7 @@ namespace WashIt.API.Data.Repositories
             await SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Booking>> GetAllBookingsAsync(DateOnly date)
+        public async Task<IEnumerable<Booking>> GetAllBookingsAsync(DateTime date)
         {
             var bookings = await _context.Bookings
                                 .Where(x => x.Date.Equals(date) && !x.Cancelled)
