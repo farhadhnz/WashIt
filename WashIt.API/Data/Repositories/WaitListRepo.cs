@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using WashIt.API.Models;
 
 namespace WashIt.API.Data.Repositories
@@ -17,6 +18,24 @@ namespace WashIt.API.Data.Repositories
                 throw new ArgumentNullException(nameof(item));
 
             _context.WaitingListItems.Add(item);
+            await SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<WaitingListItem>> GetWaitingListItems(DateOnly date)
+        {
+            var items = await _context.WaitingListItems
+                            .Where(x => x.Date.Equals(date) && !x.Notified)
+                            .ToListAsync();
+
+            return items;
+        }
+
+        public async void SetUserAsNotified(WaitingListItem waitingListItem)
+        {
+            if (waitingListItem == null)
+                throw new ArgumentNullException(nameof(waitingListItem));
+
+            waitingListItem.Notified = true;
             await SaveChangesAsync();
         }
     }

@@ -38,5 +38,13 @@ namespace WashIt.API.Data.Repositories
 
             return bookings;
         }
+
+        public async Task<Booking> GetBookingById(int bookingId)
+        {
+            var bookingItem = await _context.Bookings
+                                .FirstOrDefaultAsync(x => x.Id == bookingId);
+
+            return bookingItem;
+        }
     }
 }

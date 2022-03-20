@@ -12,11 +12,13 @@ builder.Services.AddScoped<IBaseRepo, BaseRepo>();
 builder.Services.AddScoped<IDeviceRepo, DeviceRepo>();
 builder.Services.AddScoped<IBookingRepo, BookingRepo>();
 builder.Services.AddScoped<IWaitListRepo, WaitListRepo>();
+builder.Services.AddScoped<IUserRepo, UserRepo>();
 
 builder.Services.AddScoped<IBaseService, BaseService>();
 builder.Services.AddScoped<IDeviceService, DeviceService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IWaitListService, WaitListService>();
+builder.Services.AddScoped<INotificationSender, EmailSender>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

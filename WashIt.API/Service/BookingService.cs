@@ -5,18 +5,59 @@ namespace WashIt.API.Service
 {
     public class BookingService : BaseService, IBookingService
     {
+        private readonly IBaseRepo baseRepo;
         private readonly IBookingRepo bookingRepo;
         private readonly IDeviceRepo deviceRepo;
+        private readonly IWaitListRepo waitListRepo;
+        private readonly INotificationSender notificationSender;
+        private readonly IUserRepo userRepo;
+        private readonly IWashingModeRepo washingModeRepo;
 
-        public BookingService(IBaseRepo baseRepo, IBookingRepo bookingRepo, IDeviceRepo deviceRepo) : base(baseRepo)
+        public BookingService(IBaseRepo baseRepo, IBookingRepo bookingRepo,
+                              IDeviceRepo deviceRepo, IWaitListRepo waitListRepo,
+                              INotificationSender notificationSender, IUserRepo userRepo,
+                              IWashingModeRepo washingModeRepo) : base(baseRepo)
         {
+            this.waitListRepo = waitListRepo;
+            this.notificationSender = notificationSender;
+            this.userRepo = userRepo;
+            this.washingModeRepo = washingModeRepo;
             this.deviceRepo = deviceRepo;
+            this.baseRepo = baseRepo;
             this.bookingRepo = bookingRepo;
         }
 
-        public void CancelBooking(int bookingId)
+        public async void CancelBooking(int bookingId)
         {
             bookingRepo.CancelBooking(bookingId);
+
+            // Fire Waiting List Notification
+
+            // Get the booking item
+            var bookingItem = await bookingRepo.GetBookingById(bookingId);
+
+            // Get all the items in the waiting list for that date
+            var waitingListItems = (await waitListRepo.GetWaitingListItems(bookingItem.Date))
+                                    .OrderBy(x => x.DateAdded).ToList();
+
+
+            foreach (var item in waitingListItems)
+            {
+                // Get User
+                var user = await userRepo.GetUserById(item.UserId);
+
+                // Get WashingMode
+                var washingMode = await washingModeRepo.GetWashingModeById(item.WashingModeId);
+
+                var availableTimes = await GetAvailableBookingDurations(bookingItem.Date, washingMode.DurationMinutes);
+                if (availableTimes.Any(x => x.EndTime - x.StartTime >= TimeSpan.FromMinutes(washingMode.DurationMinutes)))
+                {
+                    notificationSender.Send(user);
+
+                    // set user as notified
+                    waitListRepo.SetUserAsNotified(item);
+                }
+            }
         }
 
         public void CreateBooking(Models.Booking bookingItem)
