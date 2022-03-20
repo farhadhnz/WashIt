@@ -7,5 +7,6 @@ namespace WashIt.API.Data.Repositories
         Task<IEnumerable<Booking>> GetAllBookingsAsync(DateOnly date);
 
         void CreateBooking(Booking booking);
+        void CancelBooking(int bookingId);
     }
 }

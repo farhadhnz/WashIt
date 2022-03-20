@@ -17,6 +17,7 @@ namespace WashIt.API.Data.Repositories
                 throw new ArgumentNullException(nameof(device));
 
             await _context.Devices.AddAsync(device);
+            await SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Device>> GetAllDevicesAsync()

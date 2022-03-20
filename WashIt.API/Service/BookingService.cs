@@ -14,6 +14,16 @@ namespace WashIt.API.Service
             this.bookingRepo = bookingRepo;
         }
 
+        public void CancelBooking(int bookingId)
+        {
+            bookingRepo.CancelBooking(bookingId);
+        }
+
+        public void CreateBooking(Models.Booking bookingItem)
+        {
+            bookingRepo.CreateBooking(bookingItem);
+        }
+
         public async Task<IEnumerable<BookingAvailableDuration>> GetAvailableBookingDurations(DateOnly date, int duration)
         {
             // Get All bookings of the date

@@ -11,12 +11,23 @@ namespace WashIt.API.Data.Repositories
             _context = context;
         }
 
+        public async void CancelBooking(int bookingId)
+        {
+            var booking = _context.Bookings.FirstOrDefault(x => x.Id == bookingId);
+            if (booking == null)
+                throw new ArgumentNullException(nameof(booking));
+
+            booking.Cancelled = true;
+            await SaveChangesAsync();
+        }
+
         public async void CreateBooking(Booking booking)
         {
             if (booking == null)
                 throw new ArgumentNullException(nameof(booking));
 
             await _context.Bookings.AddAsync(booking);
+            await SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Booking>> GetAllBookingsAsync(DateOnly date)
