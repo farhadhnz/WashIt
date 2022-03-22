@@ -33,7 +33,7 @@ namespace WashIt.API.Data.Repositories
         public async Task<IEnumerable<Booking>> GetAllBookingsAsync(DateTime date)
         {
             var bookings = await _context.Bookings
-                                .Where(x => x.Date.Equals(date) && !x.Cancelled)
+                                .Where(x => x.Date.Date.Equals(date.Date) && !x.Cancelled)
                                 .ToListAsync();
 
             return bookings;

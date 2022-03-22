@@ -95,7 +95,7 @@ namespace WashIt.API.Service
 
                 foreach (var item in busyDurations)
                 {
-                    if (endTime - item.StartTime >= TimeSpan.FromMinutes(duration))
+                    if (item.StartTime.TimeOfDay - endTime.TimeOfDay >= TimeSpan.FromMinutes(duration))
                     {
                         listOfAvailable.Add(new BookingAvailableDuration
                         {
