@@ -24,7 +24,7 @@ namespace WashIt.API.Data.Repositories
         public async Task<IEnumerable<WaitingListItem>> GetWaitingListItems(DateTime date)
         {
             var items = await _context.WaitingListItems
-                            .Where(x => x.Date.Equals(date) && !x.Notified)
+                            .Where(x => x.Date.Date.Equals(date.Date) && !x.Notified)
                             .ToListAsync();
 
             return items;

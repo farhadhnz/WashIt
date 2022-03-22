@@ -9,7 +9,7 @@ namespace WashIt.API.Models
         [Required]
         public int UserId { get; set; }
         [Required]
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         [Required]
         public DateTime DateAdded { get; set; }
 

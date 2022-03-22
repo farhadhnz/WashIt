@@ -12,7 +12,7 @@ namespace WashIt.API.Data
             }
         }
 
-        private static void SeedData(AppDbContext context)
+        private static async void SeedData(AppDbContext context)
         {
             if (!context.Devices.Any())
             {
@@ -35,9 +35,11 @@ namespace WashIt.API.Data
 
                 context.Users.Add(new User() { Username = "farhadh" });
 
-                context.WashingModes.AddRange(new WashingMode() { Temperature = "60 degrees", Name = "Kitchen wash", DurationMinutes = 90 },
-                new WashingMode() { Temperature = "40 degrees", Name = "Laundry", DurationMinutes = 60 },
-                new WashingMode() { Temperature = "30 degrees", Name = "Hand wash", DurationMinutes = 20 });
+                context.WashingModes.AddRange(
+                    new WashingMode() { Temperature = "60 degrees", Name = "Kitchen wash", DurationMinutes = 90 },
+                    new WashingMode() { Temperature = "40 degrees", Name = "Laundry", DurationMinutes = 60 },
+                    new WashingMode() { Temperature = "30 degrees", Name = "Hand wash", DurationMinutes = 20 }
+                );
 
                 context.Bookings.AddRange(
                     new Booking()
@@ -311,7 +313,11 @@ namespace WashIt.API.Data
                     }
                 );
 
-                context.SaveChanges();
+                context.WaitingListItems.AddRange(
+                    new WaitingListItem() { WashingModeId = 1, UserId = 1, Date = DateTime.Now, DateAdded = DateTime.Now, Notified = false }
+                );
+
+                await context.SaveChangesAsync();
             }
             else
                 Console.WriteLine(" --> We already have data");

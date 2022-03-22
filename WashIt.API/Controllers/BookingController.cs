@@ -39,6 +39,7 @@ namespace WashIt.API.Controllers
             return Ok();
         }
 
+        [Route("id/{bookingId}/")]
         [HttpPut]
         public ActionResult CancelBooking(int bookingId)
         {
