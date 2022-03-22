@@ -1,0 +1,17 @@
+﻿[
+  {
+    "name": "Kitchen wash",
+    "temperature": "60",
+    "duration": 90
+  },
+  {
+    "name": "Laundary",
+    "temperature": "40",
+    "duration": 60
+  },
+  {
+    "name": "Hand wash",
+    "temperature": "30",
+    "duration": 20
+  }
+]

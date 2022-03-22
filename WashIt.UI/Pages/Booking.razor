@@ -1,0 +1,53 @@
+﻿@page "/booking"
+
+@using Models
+@inject HttpClient Http
+
+<h3>Booking</h3>
+
+@if (washingModes == null || !washingModes.Any())
+{
+    <div>...Loading...</div>
+}
+else
+{
+    <div>Select Washing Mode:</div>
+    <select @bind="duration">
+    <option selected="true">--select--</option>
+    @foreach (var op in washingModes)
+        {
+            <option value="@op.Duration">@op.Name @op.Temperature degrees @op.Duration minutes</option>
+        }
+
+    </select>
+}
+
+@if (duration > 0)
+{
+    <table>
+    <tbody>
+        <tr>
+            <td>x1</td>
+        </tr>
+        <tr>
+            <td>x2</td>
+        </tr>
+        <tr>
+            <td>x3</td>
+        </tr>
+    </tbody>
+</table>
+
+}
+
+
+
+@code {
+    private const string apiRoot = "http://localhost:7156/";
+    private WashingMode[] washingModes;
+    private int duration = 0;
+
+
+    protected override async Task OnInitializedAsync() =>
+    washingModes = await Http.GetFromJsonAsync<WashingMode[]>("sample-data/washing_modes.json");
+}
