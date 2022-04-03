@@ -95,7 +95,7 @@ namespace WashIt.API.Service
 
                 foreach (var item in busyDurations)
                 {
-                    if (item.StartTime.TimeOfDay - endTime.TimeOfDay >= TimeSpan.FromMinutes(duration))
+                    while (item.StartTime.TimeOfDay - endTime.TimeOfDay >= TimeSpan.FromMinutes(duration))
                     {
                         listOfAvailable.Add(new BookingAvailableDuration
                         {
@@ -103,6 +103,7 @@ namespace WashIt.API.Service
                             EndTime = item.StartTime,
                             DeviceId = machine.Id
                         });
+                        endTime = endTime + TimeSpan.FromMinutes(10);
                     }
                     endTime = item.EndTime;
                 }

@@ -13,7 +13,7 @@ else
 {
     <div>Select Washing Mode:</div>
     <select @bind="duration">
-    <option selected="true">--select--</option>
+    <option value="0" selected="true">--select--</option>
     @foreach (var op in washingModes)
         {
             <option value="@op.Duration">@op.Name @op.Temperature degrees @op.Duration minutes</option>
@@ -26,28 +26,73 @@ else
 {
     <table>
     <tbody>
-        <tr>
-            <td>x1</td>
-        </tr>
-        <tr>
-            <td>x2</td>
-        </tr>
-        <tr>
-            <td>x3</td>
-        </tr>
-    </tbody>
-</table>
+        @foreach (var hour in hours)
+            {
+                <i>@hour</i>
+                foreach (var min in minutes)
+                {
+                    var dateTime = DateTime.Parse($"04/03/2022 {hour}:{min}");
+                    var isEnabled = availableBookings.Any(x => x.StartTime.Equals(dateTime));
+                    var trClass = "";
+                    @if (!isEnabled)
+                        trClass = "disabledTr";
+                    <tr class="@trClass">
+                        <td>:@min</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+
+
 
 }
+<h1>@heading</h1>
+@for (var i = 1; i < 4; i++)
+{
+    var buttonNumber = i;
 
+    <p>
+    <button @onclick="@(e => UpdateHeading(e, buttonNumber))">
+        Button #@i
+    </button>
+</p>
+}
 
 
 @code {
     private const string apiRoot = "http://localhost:7156/";
     private WashingMode[] washingModes;
+    private List<BookingItem> availableBookings = new List<BookingItem>();
+
     private int duration = 0;
 
+    private string[] minutes = { "00", "10", "20", "30", "40", "50" };
+    private string[] hours = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
+"13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"};
 
-    protected override async Task OnInitializedAsync() =>
-    washingModes = await Http.GetFromJsonAsync<WashingMode[]>("sample-data/washing_modes.json");
+    public int ElementsToHover => duration / 10;
+
+    private void HoverNeededRows()
+    {
+
+    }
+
+    private string heading = DateTime.Now.ToString();
+
+    private async Task UpdateHeading(MouseEventArgs e, int buttonNumber)
+    {
+        if (duration == 0)
+            duration = 90;
+        availableBookings = await Http.GetFromJsonAsync<List<BookingItem>>($"sample-data/available_bookings{duration}.json");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        washingModes = await Http.GetFromJsonAsync<WashingMode[]>("sample-data/washing_modes.json");
+
+    }
+
+
 }
