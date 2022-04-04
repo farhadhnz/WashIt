@@ -8,5 +8,6 @@ namespace WashIt.API.Service
         Task<IEnumerable<BookingAvailableDuration>> GetAvailableBookingDurations(DateTime date, int duration);
         void CreateBooking(Booking bookingItem);
         void CancelBooking(int bookingId);
+        Task<IEnumerable<Booking>> GetBookings(int userId);
     }
 }

@@ -97,3 +97,14 @@ tr:hover {
 .disabledTr:hover {
   background-color: wheat;
 }
+
+.table-booking{
+  border-collapse: collapse;
+  width: 250px;
+}
+
+.tr-booking {
+  line-height: 12px;
+  background-color: wheat;
+  cursor: auto;
+}

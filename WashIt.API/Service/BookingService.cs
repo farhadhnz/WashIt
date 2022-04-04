@@ -111,5 +111,10 @@ namespace WashIt.API.Service
 
             return listOfAvailable;
         }
+
+        public async Task<IEnumerable<Models.Booking>> GetBookings(int userId)
+        {
+            return await bookingRepo.GetBookingByUserId(userId);
+        }
     }
 }

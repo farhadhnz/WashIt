@@ -1,0 +1,242 @@
+﻿[
+	{
+		"userId": 1,
+		"deviceId": 1,
+		"washingModeId": 2,
+		"date": "2022-04-03T17:17:43.7170458+02:00",
+		"startTime": "2022-04-03T00:30:00",
+		"endTime": "2022-04-03T01:30:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 1,
+		"washingModeId": 3,
+		"date": "2022-04-03T17:17:43.7604975+02:00",
+		"startTime": "2022-04-03T02:30:00",
+		"endTime": "2022-04-03T02:50:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 1,
+		"washingModeId": 1,
+		"date": "2022-04-03T17:17:43.7605071+02:00",
+		"startTime": "2022-04-03T03:30:00",
+		"endTime": "2022-04-03T05:00:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 1,
+		"washingModeId": 3,
+		"date": "2022-04-03T17:17:43.7605095+02:00",
+		"startTime": "2022-04-03T05:20:00",
+		"endTime": "2022-04-03T05:40:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 1,
+		"washingModeId": 2,
+		"date": "2022-04-03T17:17:43.7605118+02:00",
+		"startTime": "2022-04-03T07:30:00",
+		"endTime": "2022-04-03T08:30:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 1,
+		"washingModeId": 1,
+		"date": "2022-04-03T17:17:43.760514+02:00",
+		"startTime": "2022-04-03T08:40:00",
+		"endTime": "2022-04-03T10:10:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 1,
+		"washingModeId": 1,
+		"date": "2022-04-03T17:17:43.7605162+02:00",
+		"startTime": "2022-04-03T10:30:00",
+		"endTime": "2022-04-03T12:00:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 1,
+		"washingModeId": 3,
+		"date": "2022-04-03T17:17:43.7605186+02:00",
+		"startTime": "2022-04-03T14:20:00",
+		"endTime": "2022-04-03T14:40:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 1,
+		"washingModeId": 3,
+		"date": "2022-04-03T17:17:43.7605209+02:00",
+		"startTime": "2022-04-03T15:30:00",
+		"endTime": "2022-04-03T15:50:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 1,
+		"washingModeId": 1,
+		"date": "2022-04-03T17:17:43.7605231+02:00",
+		"startTime": "2022-04-03T18:00:00",
+		"endTime": "2022-04-03T19:30:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 1,
+		"washingModeId": 2,
+		"date": "2022-04-03T17:17:43.7605253+02:00",
+		"startTime": "2022-04-03T20:30:00",
+		"endTime": "2022-04-03T21:30:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 1,
+		"washingModeId": 2,
+		"date": "2022-04-03T17:17:43.7605279+02:00",
+		"startTime": "2022-04-03T21:30:00",
+		"endTime": "2022-04-03T22:30:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 2,
+		"washingModeId": 1,
+		"date": "2022-04-03T17:17:43.7605305+02:00",
+		"startTime": "2022-04-03T00:30:00",
+		"endTime": "2022-04-03T02:00:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 2,
+		"washingModeId": 3,
+		"date": "2022-04-03T17:17:43.7605327+02:00",
+		"startTime": "2022-04-03T02:30:00",
+		"endTime": "2022-04-03T02:50:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 2,
+		"washingModeId": 2,
+		"date": "2022-04-03T17:17:43.7605349+02:00",
+		"startTime": "2022-04-03T03:30:00",
+		"endTime": "2022-04-03T04:30:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 2,
+		"washingModeId": 1,
+		"date": "2022-04-03T17:17:43.7605371+02:00",
+		"startTime": "2022-04-03T05:30:00",
+		"endTime": "2022-04-03T07:00:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 2,
+		"washingModeId": 3,
+		"date": "2022-04-03T17:17:43.7605396+02:00",
+		"startTime": "2022-04-03T07:30:00",
+		"endTime": "2022-04-03T07:50:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 2,
+		"washingModeId": 2,
+		"date": "2022-04-03T17:17:43.7605419+02:00",
+		"startTime": "2022-04-03T08:40:00",
+		"endTime": "2022-04-03T09:40:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 2,
+		"washingModeId": 1,
+		"date": "2022-04-03T17:17:43.7605441+02:00",
+		"startTime": "2022-04-03T10:30:00",
+		"endTime": "2022-04-03T12:00:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 2,
+		"washingModeId": 2,
+		"date": "2022-04-03T17:17:43.7605463+02:00",
+		"startTime": "2022-04-03T14:30:00",
+		"endTime": "2022-04-03T15:30:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 2,
+		"washingModeId": 3,
+		"date": "2022-04-03T17:17:43.7605487+02:00",
+		"startTime": "2022-04-03T16:30:00",
+		"endTime": "2022-04-03T16:50:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 2,
+		"washingModeId": 2,
+		"date": "2022-04-03T17:17:43.760551+02:00",
+		"startTime": "2022-04-03T18:30:00",
+		"endTime": "2022-04-03T19:30:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 2,
+		"washingModeId": 1,
+		"date": "2022-04-03T17:17:43.7605531+02:00",
+		"startTime": "2022-04-03T19:30:00",
+		"endTime": "2022-04-03T21:00:00",
+		"cancelled": false,
+		"checkedIn": false
+	},
+	{
+		"userId": 1,
+		"deviceId": 2,
+		"washingModeId": 2,
+		"date": "2022-04-03T17:17:43.7605553+02:00",
+		"startTime": "2022-04-03T22:30:00",
+		"endTime": "2022-04-03T23:30:00",
+		"cancelled": false,
+		"checkedIn": false
+	}
+]

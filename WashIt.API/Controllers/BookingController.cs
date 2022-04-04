@@ -19,6 +19,17 @@ namespace WashIt.API.Controllers
             this.mapper = mapper;
         }
 
+        [Route("userId/{userId}")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<BookingGetDto>>> GetBookings(int userId)
+        {
+            var bookingItems = await bookingService.GetBookings(userId);
+
+            var bookings = mapper.Map<IEnumerable<BookingGetDto>>(bookingItems);
+
+            return Ok(bookings);
+        }
+
         [Route("date/{date}/duration/{duration}")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BookingAvailableDuration>>> GetAvailableBookingDurations(string date, int duration)

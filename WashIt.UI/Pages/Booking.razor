@@ -22,6 +22,14 @@ else
     </select>
 }
 
+<button @onclick="@(e => UpdateHeading(e, 1))">
+    Search
+</button>
+
+<button @onclick="@(e => AddToWaitingList(currentDateTime))">
+    Waiting List
+</button>
+
 @if (duration > 0)
 {
     <table>
@@ -31,38 +39,28 @@ else
                 <i>@hour</i>
                 foreach (var min in minutes)
                 {
-                    var dateTime = DateTime.Parse($"04/03/2022 {hour}:{min}");
+                    var date = "04/03/2022";
+                    var dateTime = DateTime.Parse($"{date} {hour}:{min}");
                     var isEnabled = availableBookings.Any(x => x.StartTime.Equals(dateTime));
                     var trClass = "";
                     @if (!isEnabled)
                         trClass = "disabledTr";
-                    <tr class="@trClass">
-                        <td>:@min</td>
-                    </tr>
+                    <tr class="@trClass" @onclick="@(e => RegisterBooking(dateTime, isEnabled))">
+            <td>:@min</td>
+        </tr>
                 }
             }
         </tbody>
     </table>
 
-
-
-
 }
-<h1>@heading</h1>
-@for (var i = 1; i < 4; i++)
-{
-    var buttonNumber = i;
 
-    <p>
-    <button @onclick="@(e => UpdateHeading(e, buttonNumber))">
-        Button #@i
-    </button>
-</p>
-}
+
+
 
 
 @code {
-    private const string apiRoot = "http://localhost:7156/";
+    private const string apiRoot = "http://localhost:7139/";
     private WashingMode[] washingModes;
     private List<BookingItem> availableBookings = new List<BookingItem>();
 
@@ -79,13 +77,47 @@ else
 
     }
 
-    private string heading = DateTime.Now.ToString();
+    private DateTime currentDateTime = DateTime.Now;
 
     private async Task UpdateHeading(MouseEventArgs e, int buttonNumber)
     {
         if (duration == 0)
             duration = 90;
         availableBookings = await Http.GetFromJsonAsync<List<BookingItem>>($"sample-data/available_bookings{duration}.json");
+    }
+
+    private async Task RegisterBooking(DateTime dateTime, bool isEnabled)
+    {
+        if (!isEnabled)
+            return;
+
+        var bookingDto = new BookingCreateDto()
+        {
+            Date = dateTime,
+            StartTime = dateTime,
+            EndTime = dateTime + TimeSpan.FromMinutes(duration),
+            UserId = 1,
+            WashingModeId = washingModes.FirstOrDefault(x => x.Duration == duration).Id,
+            DeviceId = availableBookings.FirstOrDefault(x => x.StartTime.Equals(dateTime)).DeviceId
+
+        };
+
+        await Http.PostAsJsonAsync(apiRoot + "api/booking/", bookingDto);
+    }
+
+    private async Task AddToWaitingList(DateTime dateTime)
+    {
+
+        var waitingListDto = new WaitingListDto()
+        {
+            Date = dateTime.Date,
+            UserId = 1,
+            WashingModeId = washingModes.FirstOrDefault(x => x.Duration == duration).Id,
+            DateAdded = DateTime.Now,
+            Notified = false
+        };
+
+        await Http.PostAsJsonAsync(apiRoot + "api/waitlist/", waitingListDto);
     }
 
     protected override async Task OnInitializedAsync()

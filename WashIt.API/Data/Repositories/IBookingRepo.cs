@@ -9,5 +9,6 @@ namespace WashIt.API.Data.Repositories
         void CreateBooking(Booking booking);
         void CancelBooking(int bookingId);
         Task<Booking> GetBookingById(int bookingId);
+        Task<IEnumerable<Booking>> GetBookingByUserId(int userId);
     }
 }

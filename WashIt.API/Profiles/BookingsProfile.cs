@@ -9,6 +9,7 @@ namespace WashIt.API.Profiles
         public BookingsProfile()
         {
             CreateMap<BookingCreateDto, Booking>();
+            CreateMap<Booking, BookingGetDto>();
         }
 
     }

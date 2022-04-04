@@ -19,7 +19,7 @@ namespace WashIt.API.Controllers
             this.mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult CreateWaitingListItem(WaitingListDto waitingListDto)
         {
             var waitListItem = mapper.Map<WaitingListItem>(waitingListDto);

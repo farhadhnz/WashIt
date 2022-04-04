@@ -1,0 +1,48 @@
+﻿@page "/management"
+
+@using Models
+@inject HttpClient Http
+
+<h3>Booking Management</h3>
+
+@if (bookings != null && bookings.Any())
+{
+    <table class="table-booking">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Device Number</th>
+            <th>Cancel</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in bookings)
+            {
+                <tr class="tr-booking">
+                    <td>@item.Date.ToShortDateString()</td>
+                    <td>@item.StartTime.ToShortTimeString()</td>
+                    <td>@item.EndTime.ToShortTimeString()</td>
+                    <td>@item.DeviceId</td>
+                    <td><button>Cancel</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div>Loading...</div>
+}
+
+
+@code {
+    private const string apiRoot = "http://localhost:7139/";
+    private BookingGetDto[] bookings;
+    protected override async Task OnInitializedAsync()
+    {
+        @* bookings = await Http.GetFromJsonAsync<List<BookingGetDto>>(apiRoot + "api/booking/userId/1"); *@
+        bookings = await Http.GetFromJsonAsync<BookingGetDto[]>("sample-data/bookings.json");
+    }
+}
