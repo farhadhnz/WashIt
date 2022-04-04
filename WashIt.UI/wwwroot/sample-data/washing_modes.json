@@ -1,15 +1,18 @@
 ﻿[
   {
+    "Id": 1,
     "name": "Kitchen wash",
     "temperature": "60",
     "duration": 90
   },
   {
+    "Id": 2,
     "name": "Laundary",
     "temperature": "40",
     "duration": 60
   },
   {
+    "Id": 3,
     "name": "Hand wash",
     "temperature": "30",
     "duration": 20
