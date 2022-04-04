@@ -9,11 +9,12 @@
 {
     <table class="table-booking">
     <thead>
-        <tr>
+        <tr class="tr-booking">
             <th>Date</th>
             <th>Start Time</th>
             <th>End Time</th>
             <th>Device Number</th>
+            <th>Is Cancelled</th>
             <th>Cancel</th>
         </tr>
     </thead>
@@ -22,10 +23,11 @@
             {
                 <tr class="tr-booking">
                     <td>@item.Date.ToShortDateString()</td>
-                    <td>@item.StartTime.ToShortTimeString()</td>
-                    <td>@item.EndTime.ToShortTimeString()</td>
+                    <td>@item.StartTime.ToString("HH:mm")</td>
+                    <td>@item.EndTime.ToString("HH:mm")</td>
                     <td>@item.DeviceId</td>
-                    <td><button>Cancel</button></td>
+                    <td>@item.Cancelled</td>
+                    <td><button @onclick="@(e => CancelBooking(item))">Cancel</button></td>
                 </tr>
             }
         </tbody>
@@ -38,11 +40,16 @@ else
 
 
 @code {
-    private const string apiRoot = "http://localhost:7139/";
+    private const string apiRoot = "https://localhost:7139/";
     private BookingGetDto[] bookings;
+
+    private async Task CancelBooking(BookingGetDto item)
+    {
+        await Http.PutAsJsonAsync(apiRoot + "api/booking/id/" + item.Id, item);
+    }
     protected override async Task OnInitializedAsync()
     {
         @* bookings = await Http.GetFromJsonAsync<List<BookingGetDto>>(apiRoot + "api/booking/userId/1"); *@
-        bookings = await Http.GetFromJsonAsync<BookingGetDto[]>("sample-data/bookings.json");
+        bookings = await Http.GetFromJsonAsync<BookingGetDto[]>($"{apiRoot}api/booking/userId/1");
     }
 }

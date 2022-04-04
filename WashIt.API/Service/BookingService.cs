@@ -36,10 +36,12 @@ namespace WashIt.API.Service
             // Get the booking item
             var bookingItem = await bookingRepo.GetBookingById(bookingId);
 
+            if (bookingItem == null)
+                return;
+
             // Get all the items in the waiting list for that date
             var waitingListItems = (await waitListRepo.GetWaitingListItems(bookingItem.Date))
                                     .OrderBy(x => x.DateAdded).ToList();
-
 
             foreach (var item in waitingListItems)
             {

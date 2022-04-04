@@ -22,7 +22,12 @@ else
     </select>
 }
 
-<button @onclick="@(e => UpdateHeading(e, 1))">
+<div>
+    Date:
+    <input type="date" @bind="@currentDateTime" />
+</div>
+
+<button @onclick="@(e => UpdateList())">
     Search
 </button>
 
@@ -30,7 +35,7 @@ else
     Waiting List
 </button>
 
-@if (duration > 0)
+@if (availableBookings != null && availableBookings.Any())
 {
     <table>
     <tbody>
@@ -39,10 +44,11 @@ else
                 <i>@hour</i>
                 foreach (var min in minutes)
                 {
-                    var date = "04/03/2022";
+                    var date = currentDateTime.Date.ToShortDateString();
                     var dateTime = DateTime.Parse($"{date} {hour}:{min}");
                     var isEnabled = availableBookings.Any(x => x.StartTime.Equals(dateTime));
                     var trClass = "";
+
                     @if (!isEnabled)
                         trClass = "disabledTr";
                     <tr class="@trClass" @onclick="@(e => RegisterBooking(dateTime, isEnabled))">
@@ -54,13 +60,17 @@ else
     </table>
 
 }
+else
+{
+    <div>Loading...</div>
+}
 
 
 
 
 
 @code {
-    private const string apiRoot = "http://localhost:7139/";
+    private const string apiRoot = "https://localhost:7139/";
     private WashingMode[] washingModes;
     private List<BookingItem> availableBookings = new List<BookingItem>();
 
@@ -79,11 +89,15 @@ else
 
     private DateTime currentDateTime = DateTime.Now;
 
-    private async Task UpdateHeading(MouseEventArgs e, int buttonNumber)
+    private async Task UpdateList()
     {
         if (duration == 0)
             duration = 90;
-        availableBookings = await Http.GetFromJsonAsync<List<BookingItem>>($"sample-data/available_bookings{duration}.json");
+        @* availableBookings = await Http.GetFromJsonAsync<List<BookingItem>>($"sample-data/available_bookings{duration}.json");
+        *@
+        var stringFormat = "MM-dd-yyyy";
+        availableBookings = await Http.GetFromJsonAsync<List<BookingItem>>
+        ($"{apiRoot}api/booking/date/{currentDateTime.ToString(stringFormat)}/duration/{duration}/");
     }
 
     private async Task RegisterBooking(DateTime dateTime, bool isEnabled)
@@ -103,6 +117,8 @@ else
         };
 
         await Http.PostAsJsonAsync(apiRoot + "api/booking/", bookingDto);
+
+        await UpdateList();
     }
 
     private async Task AddToWaitingList(DateTime dateTime)

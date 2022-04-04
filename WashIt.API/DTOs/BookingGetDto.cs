@@ -2,6 +2,7 @@ namespace WashIt.API.DTOs
 {
     public class BookingGetDto
     {
+        public int Id { get; set; }
         public int UserId { get; set; }
         public int DeviceId { get; set; }
         public int WashingModeId { get; set; }

@@ -313,9 +313,9 @@ namespace WashIt.API.Data
                     }
                 );
 
-                context.WaitingListItems.AddRange(
-                    new WaitingListItem() { WashingModeId = 1, UserId = 1, Date = DateTime.Now, DateAdded = DateTime.Now, Notified = false }
-                );
+                // context.WaitingListItems.AddRange(
+                //     new WaitingListItem() { WashingModeId = 1, UserId = 1, Date = DateTime.Now, DateAdded = DateTime.Now, Notified = false }
+                // );
 
                 await context.SaveChangesAsync();
             }
