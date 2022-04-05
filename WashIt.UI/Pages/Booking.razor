@@ -24,7 +24,7 @@ else
 
 <div>
     Date:
-    <input type="date" @bind="@currentDateTime" />
+    @currentDateTime.ToShortDateString()
 </div>
 
 <button @onclick="@(e => UpdateList())">
@@ -60,10 +60,7 @@ else
     </table>
 
 }
-else
-{
-    <div>Loading...</div>
-}
+
 
 
 

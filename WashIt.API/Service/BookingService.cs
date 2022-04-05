@@ -91,9 +91,26 @@ namespace WashIt.API.Service
                                        EndTime = x.EndTime,
                                        DeviceId = machine.Id
                                    })
-                                   .OrderBy(x => x.StartTime);
+                                   .OrderBy(x => x.StartTime).ToList();
 
                 var endTime = DateTime.Parse("00:00");
+
+                if (busyDurations.Count == 0)
+                {
+                    var startTime = endTime + TimeSpan.FromMinutes(duration);
+                    while (startTime.TimeOfDay - endTime.TimeOfDay >= TimeSpan.FromMinutes(duration))
+                    {
+                        listOfAvailable.Add(new BookingAvailableDuration
+                        {
+                            StartTime = endTime,
+                            EndTime = startTime,
+                            DeviceId = machine.Id
+                        });
+                        endTime = endTime + TimeSpan.FromMinutes(10);
+                        startTime = startTime + TimeSpan.FromMinutes(10);
+                    }
+                }
+
 
                 foreach (var item in busyDurations)
                 {
